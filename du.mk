@@ -19,12 +19,19 @@ $(call inherit-product, device/motorola/surnia/full_surnia.mk)
 TARGET_SCREEN_WIDTH := 540
 TARGET_SCREEN_HEIGHT := 960
 
+# Telephony-ext just in case
+ PRODUCT_PACKAGES += telephony-ext
+ PRODUCT_BOOT_JARS += telephony-ext
+ 
 ## Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := surnia
-PRODUCT_NAME := lineage_surnia
+PRODUCT_NAME := du_surnia
 PRODUCT_BRAND := Motorola
 PRODUCT_MANUFACTURER := Motorola
 PRODUCT_RELEASE_NAME := surnia
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
     PRODUCT_NAME="Moto E LTE (2nd gen)"
+
+#Using this overlay for bootanimations. It's not according to our screen but well...
+ SMALL_BOOTANIMATION_SIZE := 720x720
