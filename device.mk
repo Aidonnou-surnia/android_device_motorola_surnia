@@ -44,3 +44,9 @@ DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 # Ramdisk
 PRODUCT_PACKAGES += \
     init.target.rc
+    
+#Taken  from osprey for DU - Audio flags
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.audio.fluence.mode=endfire \
+    persist.audio.fluence.voicecall=true \
+    ro.qc.sdk.audio.fluencetype=fluence
