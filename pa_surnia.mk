@@ -1,5 +1,4 @@
-# Copyright (C) 2014-2016 The CyanogenMod Project
-#               2017 The LineageOS Project
+# Copyright (C) 2015-2017 Paranoid Android
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,18 +12,29 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# Check for target product
+ifeq (pa_surnia,$(TARGET_PRODUCT))
+
+# Inherit from those products. Most specific first.
+$(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
+
+# Include Paranoid Android common configuration
+TARGET_BOOT_ANIMATION_RES := 480
+
+include device/qcom/common/common.mk
+
+# Inherit AOSP device configuration
 $(call inherit-product, device/motorola/surnia/full_surnia.mk)
 
-# Boot animation
-TARGET_SCREEN_WIDTH := 540
-TARGET_SCREEN_HEIGHT := 960
+include vendor/pa/main.mk
 
-## Device identifier. This must come after all inclusions
+# Override AOSP build properties
+PRODUCT_NAME := pa_surnia
 PRODUCT_DEVICE := surnia
-PRODUCT_NAME := aosp_surnia
 PRODUCT_BRAND := Motorola
+PRODUCT_MODEL := Moto E 2nd Gen (LTE)
 PRODUCT_MANUFACTURER := Motorola
-PRODUCT_RELEASE_NAME := surnia
 
-PRODUCT_BUILD_PROP_OVERRIDES += \
-    PRODUCT_NAME="Moto E LTE (2nd gen)"
+PRODUCT_GMS_CLIENTID_BASE := android-motorola
+endif
+
